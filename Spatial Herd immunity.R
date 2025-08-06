@@ -12,7 +12,7 @@ kSIR = function(N, b, k,f) {
   S[1] <- N - 1 # Initial susceptible number
   I[1] <- 1     # Initial Infected number
   R[1] <- 0     # Initial Recovered number
-  rho = N / (l ** 2)           # Density without social adaptation
+  rho = N / (l ** 2)   #Density       
   sus = c()                       # List to store susceptible values
   inf = c()                      # List to store infected values
   rec = c()                       # List to store recovered values
@@ -29,7 +29,7 @@ kSIR = function(N, b, k,f) {
     rec = c(rec, R[h + 1])    # Append recovered count
   }
   # Return the list of daily infected counts (prevalence)
-  return(inf/N)
+  return(c(1/N,inf/N)[1:tmax])
 }
 
 
@@ -64,7 +64,7 @@ kSIRSIM <- function(N, r1,k,f) {
   for (time_step in 1:num_steps) {
     prev_node_types <- copy(node_types)
     num_infected <- sum(node_types == "I")
-    prevalence[time_step] <- num_infected / N
+    prevalence[time_step] <- num_infected / N #append infected
     for (i in 1:N) {
       if (prev_node_types[i] == "I") {
         dx <- abs(x - x[i])
@@ -177,7 +177,7 @@ kSIRSIM2 <- function(N, r1,k,f) {
   for (time_step in 1:num_steps) {
     prev_node_types <- copy(node_types)
     num_infected <- sum(node_types == "I")
-    prevalence[time_step] <- num_infected / N
+    prevalence[time_step] <- num_infected / N #append infected
     neighbors <- integer(0)
     for (i in 1:N) {
       if (prev_node_types[i] == "S") {
@@ -242,8 +242,8 @@ kSIRSTI2 <- function(N, r1,k,f) {
   y <- runif(N, 0, 1)
   for (time_step in 1:num_steps) {
     prev_node_types <- copy(node_types)
-    num_infected <- sum(node_types == "I")
-    prevalence[time_step] <- num_infected / N
+    num_infected <- sum(node_types == "I") 
+    prevalence[time_step] <- num_infected / N #append infected
     neighbors <- integer(0)
     for (i in 1:N) {
       if (prev_node_types[i] == "S") {
@@ -297,7 +297,7 @@ kSIR2 = function(N, b, k,f) {
   S[1] <- N - 1 # Initial susceptible number
   I[1] <- 1     # Initial Infected number
   R[1] <- 0     # Initial Recovered number
-  rho = N / (l ** 2)           # Density without social adaptation
+  rho = N / (l ** 2)           # Density 
   sus = c()                       # List to store susceptible values
   inf = c()                      # List to store infected values
   rec = c()                       # List to store recovered values
@@ -314,7 +314,7 @@ kSIR2 = function(N, b, k,f) {
     rec = c(rec, R[h + 1])    # Append recovered count
   }
   # Return the list of daily infected counts (prevalence)
-  return(inf/N)
+  return(c(1/N,inf/N)[1:tmax])
 }
 
 #AIS model, fixed k, fully mixed
@@ -341,7 +341,7 @@ kSIRSIM3 <- function(N, r1,k,f) {
   for (time_step in 1:num_steps) {
     prev_node_types <- copy(node_types)
     num_infected <- sum(node_types == "I")
-    prevalence[time_step] <- num_infected / N
+    prevalence[time_step] <- num_infected / N #append infected
     neighbors <- integer(0)
     for (i in 1:N) {
       if (prev_node_types[i] == "I") {
@@ -414,7 +414,7 @@ kSIRSTI3 <- function(N, r1,k,f) {
   for (time_step in 1:num_steps) {
     prev_node_types <- copy(node_types)
     num_infected <- sum(node_types == "I")
-    prevalence[time_step] <- num_infected / N
+    prevalence[time_step] <- num_infected / N #append infected
     neighbors <- integer(0)
     for (i in 1:N) {
       if (prev_node_types[i] == "I") {
@@ -473,7 +473,7 @@ kSIR3 = function(N, b, k,f) {
   S[1] <- N - 1 # Initial susceptible number
   I[1] <- 1     # Initial Infected number
   R[1] <- 0     # Initial Recovered number
-  rho = N / (l ** 2)           # Density without social adaptation
+  rho = N / (l ** 2)           # Density 
   sus = c()                       # List to store susceptible values
   inf = c()                      # List to store infected values
   rec = c()                       # List to store recovered values
@@ -491,7 +491,7 @@ kSIR3 = function(N, b, k,f) {
     rec = c(rec, R[h + 1])    # Append recovered count
   }
   # Return the list of daily infected counts (prevalence)
-  return(inf/N)
+  return(c(1/N,inf/N)[1:tmax])
 }
 #############################################################################
 #Numerical solution: AI mode;power law function
@@ -505,7 +505,7 @@ SIRm = function(N, b,m,f,tmax) {
   S[1] <- N - 1 # Initial susceptible number
   I[1] <- 1     # Initial Infected number
   R[1] <- 0     # Initial Recovered number
-  rho = N / (l ** 2)           # Density without social adaptation
+  rho = N / (l ** 2)           # Density 
   sus = c()                       # List to store susceptible values
   inf = c()                      # List to store infected values
   rec = c()                       # List to store recovered values
@@ -523,7 +523,7 @@ SIRm = function(N, b,m,f,tmax) {
     rec = c(rec, R[h + 1])    # Append recovered count
   }
   # Return the list of daily infected counts (prevalence)
-  return(inf/N)
+  return(c(1/N,inf/N)[1:tmax])
 }
 
 #Numerical solution: AS mode;power law function
@@ -537,7 +537,7 @@ SIRm2 = function(N, b,m,f,tmax) {
   S[1] <- N - 1 # Initial susceptible number
   I[1] <- 1     # Initial Infected number
   R[1] <- 0     # Initial Recovered number
-  rho = N / (l ** 2)           # Density without social adaptation
+  rho = N / (l ** 2)           # Density 
   sus = c()                       # List to store susceptible values
   inf = c()                      # List to store infected values
   rec = c()                       # List to store recovered values
@@ -555,7 +555,7 @@ SIRm2 = function(N, b,m,f,tmax) {
     rec = c(rec, R[h + 1])    # Append recovered count
   }
   # Return the list of daily infected counts (prevalence)
-  return(inf/N)
+  return(c(1/N,inf/N)[1:tmax])
 }
 
 #Numerical solution: AIS mode;power law function
@@ -569,7 +569,7 @@ SIRm3 = function(N, b,m,f,tmax) {
   S[1] <- N - 1 # Initial susceptible number
   I[1] <- 1     # Initial Infected number
   R[1] <- 0     # Initial Recovered number
-  rho = N / (l ** 2)           # Density without social adaptation
+  rho = N / (l ** 2)           # Density 
   sus = c()                       # List to store susceptible values
   inf = c()                      # List to store infected values
   rec = c()                       # List to store recovered values
@@ -588,7 +588,7 @@ SIRm3 = function(N, b,m,f,tmax) {
     rec = c(rec, R[h + 1])    # Append recovered count
   }
   # Return the list of daily infected counts (prevalence)
-  return(inf/N)
+  return(c(1/N,inf/N)[1:tmax])
 }
 ################################################
 #AI mode, power law, static
@@ -610,7 +610,7 @@ SIRmSTI <- function(N, r1, m, f) {
   for (time_step in 1:num_steps) {
     prev_node_types <- copy(node_types)
     num_infected <- sum(node_types == "I")
-    prevalence[time_step] <- num_infected / N
+    prevalence[time_step] <- num_infected / N #append infected
     for (i in 1:N) {
       if (prev_node_types[i] == "I") {
         dx <- abs(x - x[i])
@@ -671,7 +671,7 @@ SIRmSTI2 <- function(N, r1,m,f) {
   for (time_step in 1:num_steps) {
     prev_node_types <- copy(node_types)
     num_infected <- sum(node_types == "I")
-    prevalence[time_step] <- num_infected / N
+    prevalence[time_step] <- num_infected / N#append infected
     neighbors <- integer(0)
     for (i in 1:N) {
       if (prev_node_types[i] == "S") {
@@ -740,7 +740,7 @@ SIRmSTI3 <- function(N, r1, m, f) {
   for (time_step in 1:num_steps) {
     prev_node_types <- copy(node_types)
     num_infected <- sum(node_types == "I")
-    prevalence[time_step] <- num_infected / N
+    prevalence[time_step] <- num_infected / N #append infected
     neighbors <- integer(0)
     for (i in 1:N) {
       if (prev_node_types[i] == "I") {
@@ -800,7 +800,7 @@ SIRq1 = function(N, b,q,f,tmax) {
   S[1] <- N - 1 # Initial susceptible number
   I[1] <- 1     # Initial Infected number
   R[1] <- 0     # Initial Recovered number
-  rho = N / (l ** 2)           # Density without social adaptation
+  rho = N / (l ** 2)           # Density
   sus = c()                       # List to store susceptible values
   inf = c()                      # List to store infected values
   rec = c()                       # List to store recovered values
@@ -835,7 +835,7 @@ SIRq2 = function(N, b,q,f,tmax) {
   S[1] <- N - 1 # Initial susceptible number
   I[1] <- 1     # Initial Infected number
   R[1] <- 0     # Initial Recovered number
-  rho = N / (l ** 2)           # Density without social adaptation
+  rho = N / (l ** 2)           # Density 
   sus = c()                       # List to store susceptible values
   inf = c()                      # List to store infected values
   rec = c()                       # List to store recovered values
@@ -870,7 +870,7 @@ SIRq3 = function(N, b,q,f,tmax) {
   S[1] <- N - 1 # Initial susceptible number
   I[1] <- 1     # Initial Infected number
   R[1] <- 0     # Initial Recovered number
-  rho = N / (l ** 2)           # Density without social adaptation
+  rho = N / (l ** 2)           # Density
   sus = c()                       # List to store susceptible values
   inf = c()                      # List to store infected values
   rec = c()                       # List to store recovered values
@@ -947,7 +947,7 @@ SIRSTIq <- function(N, r1, q, f) {
       node_r = node_r
     }
   }
-  return(prevalence)   # Return the maximum prevalence during the simulation
+  return(prevalence)   # Return the prevalence during the simulation
 }
 
 #AS model, sigmoid, Static
@@ -1014,7 +1014,7 @@ SIRSTIq2 <- function(N, r1,q,f) {
       node_r = node_r
     }
   }
-  return(prevalence)   # Return the maximum prevalence during the simulation
+  return(prevalence)   # Return the  prevalence during the simulation
 }
 
 
@@ -1089,5 +1089,6 @@ SIRSTIq3 <- function(N, r1, q, f) {
       node_r = node_r
     }
   }
-  return(prevalence)   # Return the maximum prevalence during the simulation
+  return(prevalence)   # Return the  prevalence during the simulation
 }
+
