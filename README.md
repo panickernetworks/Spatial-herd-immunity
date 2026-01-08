@@ -1,4 +1,3 @@
-Herd Immunity with Spatial Adaptation Based on Global Prevalence Information
 This repository contains the code associated with our paper “Herd Immunity with Spatial Adaptation Based on Global Prevalence Information.”
 The code implements epidemic models in which individuals adapt their behavior based on global prevalence information.
 Three adaptation-based epidemic models are studied:
